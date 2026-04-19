@@ -24,63 +24,41 @@ function getReturnClass(value) {
   return "neutral";
 }
 
-function calculatePositionReturn(buyPrice, currentPrice) {
-  return ((currentPrice - buyPrice) / buyPrice) * 100;
-}
-
-function calculatePortfolioReturn(positions) {
-  const values = positions.map((p) => p.returnPct);
-  const total = values.reduce((sum, value) => sum + value, 0);
-  return total / values.length;
-}
-
 async function init() {
   const portfolio = await loadJson("data/current_portfolio.json");
   const benchmarks = await loadJson("data/benchmarks.json");
   const updates = await loadJson("data/updates.json");
+  const performance = await loadJson("data/performance.json");
 
   document.getElementById("month-label").textContent = portfolio.label;
   document.getElementById("buy-date").textContent = `Kjøpsdato: ${portfolio.buy_date}`;
   document.getElementById("last-updated").textContent =
-    `Sist oppdatert: ${portfolio.updated_at || "–"}`;
-
-  const enrichedPositions = portfolio.positions.map((position) => {
-    const currentPrice = position.current_price;
-    const returnPct =
-      typeof position.return_pct === "number"
-        ? position.return_pct
-        : calculatePositionReturn(position.buy_price, currentPrice);
-
-    return { ...position, returnPct };
-  });
-
-  const portfolioReturn = calculatePortfolioReturn(enrichedPositions);
-  const alphaSp500 = portfolioReturn - benchmarks.sp500.return_pct;
-  const alphaDnb = portfolioReturn - benchmarks.dnb_global_indeks.return_pct;
+    `Sist oppdatert: ${performance.updated_at || portfolio.updated_at || "–"}`;
 
   const portfolioReturnEl = document.getElementById("portfolio-return");
-  portfolioReturnEl.textContent = formatPercent(portfolioReturn);
-  portfolioReturnEl.className = getReturnClass(portfolioReturn);
+  portfolioReturnEl.textContent = formatPercent(performance.portfolio_return_pct);
+  portfolioReturnEl.className = getReturnClass(performance.portfolio_return_pct);
 
   const alphaSp500El = document.getElementById("alpha-sp500");
-  alphaSp500El.textContent = formatPercent(alphaSp500);
-  alphaSp500El.className = getReturnClass(alphaSp500);
+  alphaSp500El.textContent = formatPercent(performance.alpha_vs_sp500);
+  alphaSp500El.className = getReturnClass(performance.alpha_vs_sp500);
 
   const alphaDnbEl = document.getElementById("alpha-dnb");
-  alphaDnbEl.textContent = formatPercent(alphaDnb);
-  alphaDnbEl.className = getReturnClass(alphaDnb);
+  alphaDnbEl.textContent = formatPercent(performance.alpha_vs_dnb);
+  alphaDnbEl.className = getReturnClass(performance.alpha_vs_dnb);
 
   document.getElementById("sp500-return").textContent = formatPercent(benchmarks.sp500.return_pct);
   document.getElementById("sp500-current-price").textContent =
     `Kurs nå: ${formatNumber(benchmarks.sp500.current_price)}`;
-  document.getElementById("dnb-return").textContent = formatPercent(benchmarks.dnb_global_indeks.return_pct);
+  document.getElementById("dnb-return").textContent =
+    formatPercent(benchmarks.dnb_global_indeks.return_pct);
   document.getElementById("dnb-date").textContent =
     `Sist oppdatert NAV: ${benchmarks.dnb_global_indeks.as_of_date}`;
 
   const grid = document.getElementById("positions-grid");
   grid.innerHTML = "";
 
-  enrichedPositions.forEach((position) => {
+  portfolio.positions.forEach((position) => {
     const card = document.createElement("article");
     card.className = "position-card";
 
@@ -94,7 +72,7 @@ async function init() {
       <p class="metric"><strong>Kurs nå:</strong> ${formatNumber(position.current_price)}</p>
       <p class="metric">
         <strong>Avkastning:</strong>
-        <span class="${getReturnClass(position.returnPct)}">${formatPercent(position.returnPct)}</span>
+        <span class="${getReturnClass(position.return_pct)}">${formatPercent(position.return_pct)}</span>
       </p>
     `;
 
