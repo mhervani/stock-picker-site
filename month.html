@@ -10,7 +10,7 @@
   <header class="site-header">
     <div class="container">
       <h1 id="month-page-title">Månedsdetaljer</h1>
-      <p class="subtitle">Detaljvisning av analyse, picks og porteføljecase</p>
+      <p class="subtitle">Full rapport for månedens portefølje</p>
     </div>
   </header>
 
@@ -21,6 +21,7 @@
         <h2 id="month-label">Laster...</h2>
         <p id="month-buy-date">Kjøpsdato: –</p>
         <p id="month-analysis-date" class="muted">Analysedato: –</p>
+        <p id="month-status" class="muted">Status: –</p>
       </div>
 
       <div class="hero-stats">
@@ -45,6 +46,26 @@
       <p class="muted" id="freshness-note">–</p>
     </section>
 
+    <section class="benchmark-section">
+      <div class="section-header">
+        <h2>Benchmark-oppsummering</h2>
+      </div>
+
+      <div class="benchmark-grid">
+        <div class="panel">
+          <h3>S&amp;P 500</h3>
+          <p>Startverdi: <strong id="month-sp500-buy">–</strong></p>
+          <p class="muted">Proxy: <span id="month-sp500-proxy">–</span></p>
+        </div>
+
+        <div class="panel">
+          <h3>DNB Global Indeks</h3>
+          <p>Start-NAV: <strong id="month-dnb-buy">–</strong></p>
+          <p class="muted">Dato: <span id="month-dnb-date">–</span></p>
+        </div>
+      </div>
+    </section>
+
     <section class="panel">
       <h2>Hvorfor porteføljen kan slå benchmark</h2>
       <p id="portfolio-case">–</p>
@@ -53,6 +74,16 @@
     <section class="panel">
       <h2>Største samlede risiko</h2>
       <p id="portfolio-risk">–</p>
+    </section>
+
+    <section class="chart-panel">
+      <div class="section-header">
+        <h2>Utvikling siden kjøp</h2>
+      </div>
+      <div class="chart-wrap">
+        <canvas id="month-performance-chart"></canvas>
+      </div>
+      <p class="muted chart-note" id="chart-note">Grafen vises for aktiv måned når grafdata finnes.</p>
     </section>
 
     <section>
@@ -76,6 +107,13 @@
       </div>
     </section>
 
+    <section class="panel">
+      <h2>What if held</h2>
+      <div id="held-block">
+        <p>Ingen videre tracking ennå.</p>
+      </div>
+    </section>
+
     <section class="links-section">
       <a class="nav-link" href="index.html">Tilbake til forsiden</a>
       <a class="nav-link" href="history.html">Se historikk</a>
@@ -83,6 +121,7 @@
     </section>
   </main>
 
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="assets/js/month.js"></script>
 </body>
 </html>
