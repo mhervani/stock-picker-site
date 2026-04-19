@@ -11,6 +11,13 @@ function formatPercent(value) {
   return `${sign}${value.toFixed(2)}%`;
 }
 
+function formatNumber(value) {
+  if (typeof value !== "number" || Number.isNaN(value)) {
+    return "–";
+  }
+  return value.toFixed(2);
+}
+
 function getReturnClass(value) {
   if (value > 0) return "positive";
   if (value < 0) return "negative";
@@ -34,10 +41,16 @@ async function init() {
 
   document.getElementById("month-label").textContent = portfolio.label;
   document.getElementById("buy-date").textContent = `Kjøpsdato: ${portfolio.buy_date}`;
+  document.getElementById("last-updated").textContent =
+    `Sist oppdatert: ${portfolio.updated_at || "–"}`;
 
   const enrichedPositions = portfolio.positions.map((position) => {
     const currentPrice = position.current_price;
-    const returnPct = calculatePositionReturn(position.buy_price, currentPrice);
+    const returnPct =
+      typeof position.return_pct === "number"
+        ? position.return_pct
+        : calculatePositionReturn(position.buy_price, currentPrice);
+
     return { ...position, returnPct };
   });
 
@@ -58,6 +71,8 @@ async function init() {
   alphaDnbEl.className = getReturnClass(alphaDnb);
 
   document.getElementById("sp500-return").textContent = formatPercent(benchmarks.sp500.return_pct);
+  document.getElementById("sp500-current-price").textContent =
+    `Kurs nå: ${formatNumber(benchmarks.sp500.current_price)}`;
   document.getElementById("dnb-return").textContent = formatPercent(benchmarks.dnb_global_indeks.return_pct);
   document.getElementById("dnb-date").textContent =
     `Sist oppdatert NAV: ${benchmarks.dnb_global_indeks.as_of_date}`;
@@ -75,19 +90,26 @@ async function init() {
       <p><strong>Tese:</strong> ${position.thesis}</p>
       <p><strong>Katalysatorer:</strong> ${position.catalysts_30d.join(", ")}</p>
       <p><strong>Risiko:</strong> ${position.risk}</p>
-      <p class="metric"><strong>Kjøpskurs:</strong> ${position.buy_price}</p>
-      <p class="metric"><strong>Kurs nå:</strong> ${position.current_price}</p>
-      <p class="metric"><strong>Avkastning:</strong> <span class="${getReturnClass(position.returnPct)}">${formatPercent(position.returnPct)}</span></p>
+      <p class="metric"><strong>Kjøpskurs:</strong> ${formatNumber(position.buy_price)}</p>
+      <p class="metric"><strong>Kurs nå:</strong> ${formatNumber(position.current_price)}</p>
+      <p class="metric">
+        <strong>Avkastning:</strong>
+        <span class="${getReturnClass(position.returnPct)}">${formatPercent(position.returnPct)}</span>
+      </p>
     `;
 
     grid.appendChild(card);
   });
 
   if (updates.midmonth_update) {
-    document.getElementById("midmonth-date").textContent = `Dato: ${updates.midmonth_update.date}`;
-    document.getElementById("midmonth-summary").textContent = updates.midmonth_update.summary;
-    document.getElementById("hold-decision").textContent = updates.midmonth_update.hold_to_day_30;
-    document.getElementById("biggest-risk").textContent = updates.midmonth_update.biggest_risk_next_2w;
+    document.getElementById("midmonth-date").textContent =
+      `Dato: ${updates.midmonth_update.date}`;
+    document.getElementById("midmonth-summary").textContent =
+      updates.midmonth_update.summary;
+    document.getElementById("hold-decision").textContent =
+      updates.midmonth_update.hold_to_day_30;
+    document.getElementById("biggest-risk").textContent =
+      updates.midmonth_update.biggest_risk_next_2w;
   }
 }
 

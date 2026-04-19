@@ -11,14 +11,15 @@
       "country": "USA",
       "sector": "Technology",
       "buy_price": 108.42,
-      "current_price": 112.30,
+      "current_price": 201.68,
       "weight": 0.333,
       "thesis": "Sterk AI-momentum og sannsynlig positiv kapitalflyt.",
       "catalysts_30d": [
         "Analytikerrevisjoner",
         "Videre AI-etterspørsel"
       ],
-      "risk": "Høy verdsettelse og rask sentimentendring."
+      "risk": "Høy verdsettelse og rask sentimentendring.",
+      "return_pct": 86.0173
     },
     {
       "ticker": "ASML",
@@ -26,15 +27,16 @@
       "exchange": "Euronext Amsterdam",
       "country": "Netherlands",
       "sector": "Semiconductors",
-      "buy_price": 921.00,
-      "current_price": 945.20,
+      "buy_price": 921.0,
+      "current_price": 1459.8,
       "weight": 0.333,
       "thesis": "Strukturell halvlederstyrke og kvalitetsprofil i sektoren.",
       "catalysts_30d": [
         "Kapitalflyt mot kvalitet",
         "Stabile investeringsforventninger"
       ],
-      "risk": "Makrosvakhet og svakere chip-sentiment."
+      "risk": "Makrosvakhet og svakere chip-sentiment.",
+      "return_pct": 58.5016
     },
     {
       "ticker": "UBER",
@@ -42,15 +44,17 @@
       "exchange": "NYSE",
       "country": "USA",
       "sector": "Industrials",
-      "buy_price": 79.50,
-      "current_price": 81.44,
+      "buy_price": 79.5,
+      "current_price": 77.12,
       "weight": 0.333,
       "thesis": "Bedret lønnsomhet og fortsatt operasjonell styrke.",
       "catalysts_30d": [
         "Marginforbedring",
         "Stabil vekst i bookings"
       ],
-      "risk": "Regulatorisk risiko og svak risikosentiment."
+      "risk": "Regulatorisk risiko og svak risikosentiment.",
+      "return_pct": -2.9937
     }
-  ]
+  ],
+  "updated_at": "2026-04-19T09:31:28+00:00"
 }
