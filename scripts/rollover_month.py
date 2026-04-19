@@ -62,7 +62,8 @@ def main():
 
     existing_month_ids = {item["month_id"] for item in history}
     if portfolio["month_id"] in existing_month_ids:
-        raise ValueError(f"Måneden {portfolio['month_id']} finnes allerede i historikken.")
+        print(f"Måneden {portfolio['month_id']} finnes allerede i historikken. Ingen endring gjort.")
+        return
 
     completed_month = {
         "month_id": portfolio["month_id"],
