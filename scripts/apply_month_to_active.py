@@ -38,6 +38,7 @@ def main():
         "label": month["label"],
         "buy_date": month["buy_date"],
         "status": month["status"],
+        "updated_at": None,
         "positions": [
             {
                 "ticker": p["ticker"],
@@ -60,18 +61,19 @@ def main():
     benchmarks = {
         "month_id": month["month_id"],
         "buy_date": month["buy_date"],
+        "updated_at": None,
         "sp500": {
             "name": month["benchmarks"]["primary"],
             "proxy_ticker": month["benchmarks"]["sp500_proxy_ticker"],
-            "buy_price": month["benchmarks"]["sp500_buy_price"] or 0,
-            "current_price": month["benchmarks"]["sp500_buy_price"] or 0,
+            "buy_price": month["benchmarks"]["sp500_buy_price"],
+            "current_price": month["benchmarks"]["sp500_buy_price"],
             "return_pct": 0
         },
         "dnb_global_indeks": {
             "name": month["benchmarks"]["secondary"],
-            "buy_nav": month["benchmarks"]["dnb_global_indeks_buy_nav"] or 0,
-            "current_nav": month["benchmarks"]["dnb_global_indeks_buy_nav"] or 0,
-            "return_pct": 0,
+            "buy_nav": month["benchmarks"]["dnb_global_indeks_buy_nav"],
+            "current_nav": month["benchmarks"]["dnb_global_indeks_buy_nav"],
+            "return_pct": None if month["benchmarks"]["dnb_global_indeks_buy_nav"] in (None, 0) else 0,
             "as_of_date": month["benchmarks"]["dnb_global_indeks_as_of_date"]
         }
     }
@@ -87,7 +89,7 @@ def main():
         "updated_at": None,
         "portfolio_return_pct": 0,
         "alpha_vs_sp500": 0,
-        "alpha_vs_dnb": 0,
+        "alpha_vs_dnb": None if month["benchmarks"]["dnb_global_indeks_buy_nav"] in (None, 0) else 0,
         "best_contributor": {
             "ticker": "",
             "return_pct": 0

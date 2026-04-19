@@ -7,21 +7,32 @@ async function loadJson(path) {
 }
 
 function formatPercent(value) {
+  if (value === null || value === undefined || Number.isNaN(value)) {
+    return "–";
+  }
   const sign = value > 0 ? "+" : "";
   return `${sign}${value.toFixed(2)}%`;
 }
 
 function formatNumber(value) {
-  if (typeof value !== "number" || Number.isNaN(value)) {
+  if (value === null || value === undefined || Number.isNaN(value)) {
     return "–";
   }
   return value.toFixed(2);
 }
 
 function getReturnClass(value) {
+  if (value === null || value === undefined || Number.isNaN(value)) {
+    return "neutral";
+  }
   if (value > 0) return "positive";
   if (value < 0) return "negative";
   return "neutral";
+}
+
+function formatDateText(value) {
+  if (!value) return "–";
+  return value;
 }
 
 async function init() {
@@ -50,10 +61,22 @@ async function init() {
   document.getElementById("sp500-return").textContent = formatPercent(benchmarks.sp500.return_pct);
   document.getElementById("sp500-current-price").textContent =
     `Kurs nå: ${formatNumber(benchmarks.sp500.current_price)}`;
-  document.getElementById("dnb-return").textContent =
-    formatPercent(benchmarks.dnb_global_indeks.return_pct);
-  document.getElementById("dnb-date").textContent =
-    `Sist oppdatert NAV: ${benchmarks.dnb_global_indeks.as_of_date}`;
+
+  const dnbReturnEl = document.getElementById("dnb-return");
+  const dnbDateEl = document.getElementById("dnb-date");
+
+  if (
+    benchmarks.dnb_global_indeks.buy_nav === null ||
+    benchmarks.dnb_global_indeks.buy_nav === undefined ||
+    benchmarks.dnb_global_indeks.buy_nav === 0
+  ) {
+    dnbReturnEl.textContent = "Ikke tilgjengelig";
+    dnbDateEl.textContent = "Sist oppdatert NAV: ikke tilgjengelig";
+  } else {
+    dnbReturnEl.textContent = formatPercent(benchmarks.dnb_global_indeks.return_pct);
+    dnbDateEl.textContent =
+      `Sist oppdatert NAV: ${formatDateText(benchmarks.dnb_global_indeks.as_of_date)}`;
+  }
 
   const grid = document.getElementById("positions-grid");
   grid.innerHTML = "";
@@ -85,9 +108,9 @@ async function init() {
     document.getElementById("midmonth-summary").textContent =
       updates.midmonth_update.summary;
     document.getElementById("hold-decision").textContent =
-      updates.midmonth_update.hold_to_day_30;
+      updates.midmonth_update.hold_to_day_30 || updates.midmonth_update.hold_recommendation || "–";
     document.getElementById("biggest-risk").textContent =
-      updates.midmonth_update.biggest_risk_next_2w;
+      updates.midmonth_update.biggest_risk_next_2w || updates.midmonth_update.biggest_risk_rest_of_month || "–";
   }
 }
 
