@@ -6,6 +6,12 @@
       "portfolio_return_pct": 0.0132,
       "sp500_return_pct": 0.0028,
       "dnb_return_pct": 0.0
+    },
+    {
+      "timestamp": "2026-04-19T15:50:33+00:00",
+      "portfolio_return_pct": 0.0132,
+      "sp500_return_pct": 0.0028,
+      "dnb_return_pct": 0.0
     }
   ]
 }

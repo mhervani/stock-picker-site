@@ -14,6 +14,7 @@ CURRENT_PORTFOLIO_PATH = os.path.join(DATA_DIR, "current_portfolio.json")
 BENCHMARKS_PATH = os.path.join(DATA_DIR, "benchmarks.json")
 PERFORMANCE_PATH = os.path.join(DATA_DIR, "performance.json")
 CHART_DATA_PATH = os.path.join(DATA_DIR, "chart_data.json")
+HELD_POSITIONS_PATH = os.path.join(DATA_DIR, "held_positions.json")
 
 API_KEY = os.getenv("FINNHUB_API_KEY")
 
@@ -30,6 +31,11 @@ def save_json(path, data):
     with open(path, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
         f.write("\n")
+
+
+def ensure_json_file(path, default_data):
+    if not os.path.exists(path):
+        save_json(path, default_data)
 
 
 def fetch_text(url):
@@ -141,8 +147,8 @@ def calculate_return_pct(buy_price, current_price):
     return ((current_price - buy_price) / buy_price) * 100
 
 
-def calculate_portfolio_return(positions):
-    valid = [p["return_pct"] for p in positions if p["return_pct"] is not None]
+def calculate_average_return(items):
+    valid = [item["return_pct"] for item in items if item.get("return_pct") is not None]
     if not valid:
         return 0.0
     return sum(valid) / len(valid)
@@ -159,6 +165,7 @@ def find_worst_contributor(positions):
 
 
 def append_chart_point(month_id, updated_at, portfolio_return, sp500_return, dnb_return):
+    ensure_json_file(CHART_DATA_PATH, {"month_id": None, "series": []})
     chart_data = load_json(CHART_DATA_PATH)
 
     if chart_data.get("month_id") != month_id:
@@ -186,10 +193,39 @@ def append_chart_point(month_id, updated_at, portfolio_return, sp500_return, dnb
     save_json(CHART_DATA_PATH, chart_data)
 
 
+def update_held_positions(updated_at):
+    ensure_json_file(HELD_POSITIONS_PATH, {"portfolios": []})
+    held = load_json(HELD_POSITIONS_PATH)
+
+    for portfolio in held.get("portfolios", []):
+        if portfolio.get("status") != "tracking":
+            continue
+
+        for position in portfolio.get("positions", []):
+            ticker = position["ticker"]
+            quote = fetch_quote(ticker)
+            position["current_price"] = round(quote["current_price"], 4)
+            position["return_pct"] = round(
+                calculate_return_pct(position["buy_price"], position["current_price"]),
+                4
+            )
+
+        portfolio["portfolio_return_pct"] = round(
+            calculate_average_return(portfolio.get("positions", [])),
+            4
+        )
+        portfolio["updated_at"] = updated_at
+
+    save_json(HELD_POSITIONS_PATH, held)
+
+
 def main():
     if not API_KEY:
         print("FINNHUB_API_KEY mangler.")
         sys.exit(1)
+
+    ensure_json_file(HELD_POSITIONS_PATH, {"portfolios": []})
+    ensure_json_file(CHART_DATA_PATH, {"month_id": None, "series": []})
 
     portfolio = load_json(CURRENT_PORTFOLIO_PATH)
     benchmarks = load_json(BENCHMARKS_PATH)
@@ -233,7 +269,7 @@ def main():
         except Exception as exc:
             print(f"Advarsel: klarte ikke å oppdatere DNB Global Indeks: {exc}")
 
-    portfolio_return = round(calculate_portfolio_return(portfolio["positions"]), 4)
+    portfolio_return = round(calculate_average_return(portfolio["positions"]), 4)
     alpha_vs_sp500 = round(portfolio_return - benchmarks["sp500"]["return_pct"], 4)
 
     dnb_return = benchmarks["dnb_global_indeks"]["return_pct"]
@@ -271,7 +307,9 @@ def main():
         dnb_return
     )
 
-    print("Oppdaterte priser, benchmarks, performance og chart_data.")
+    update_held_positions(updated_at)
+
+    print("Oppdaterte priser, benchmarks, performance, chart_data og held_positions.")
     print(f"updated_at={updated_at}")
 
 

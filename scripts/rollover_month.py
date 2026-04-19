@@ -12,6 +12,7 @@ BENCHMARKS_PATH = os.path.join(DATA_DIR, "benchmarks.json")
 PERFORMANCE_PATH = os.path.join(DATA_DIR, "performance.json")
 MONTHLY_HISTORY_PATH = os.path.join(DATA_DIR, "monthly_history.json")
 TRACK_RECORD_PATH = os.path.join(DATA_DIR, "track_record.json")
+HELD_POSITIONS_PATH = os.path.join(DATA_DIR, "held_positions.json")
 
 
 def load_json(path):
@@ -25,18 +26,25 @@ def save_json(path, data):
         f.write("\n")
 
 
+def ensure_json_file(path, default_data):
+    if not os.path.exists(path):
+        save_json(path, default_data)
+
+
 def calculate_track_record(history):
     months_completed = len(history)
     beat_sp500_count = sum(1 for item in history if item["alpha_vs_sp500"] > 0)
-    beat_dnb_count = sum(1 for item in history if item["alpha_vs_dnb"] > 0)
+
+    dnb_alpha_values = [item["alpha_vs_dnb"] for item in history if item["alpha_vs_dnb"] is not None]
+    beat_dnb_count = sum(1 for value in dnb_alpha_values if value > 0)
 
     avg_alpha_vs_sp500 = (
         sum(item["alpha_vs_sp500"] for item in history) / months_completed
         if months_completed else 0
     )
     avg_alpha_vs_dnb = (
-        sum(item["alpha_vs_dnb"] for item in history) / months_completed
-        if months_completed else 0
+        sum(dnb_alpha_values) / len(dnb_alpha_values)
+        if dnb_alpha_values else 0
     )
     cumulative_portfolio_return_pct = (
         sum(item["portfolio_return_pct"] for item in history)
@@ -53,7 +61,50 @@ def calculate_track_record(history):
     }
 
 
+def add_to_held_positions(portfolio, performance, close_date):
+    ensure_json_file(HELD_POSITIONS_PATH, {"portfolios": []})
+    held = load_json(HELD_POSITIONS_PATH)
+
+    existing_ids = {item["origin_month_id"] for item in held.get("portfolios", [])}
+    if portfolio["month_id"] in existing_ids:
+        return
+
+    held_portfolio = {
+        "origin_month_id": portfolio["month_id"],
+        "label": portfolio["label"],
+        "buy_date": portfolio["buy_date"],
+        "closed_date": close_date,
+        "status": "tracking",
+        "portfolio_return_pct": performance["portfolio_return_pct"],
+        "updated_at": performance.get("updated_at"),
+        "positions": [
+            {
+                "ticker": p["ticker"],
+                "company": p["company"],
+                "exchange": p["exchange"],
+                "country": p["country"],
+                "sector": p["sector"],
+                "buy_price": p["buy_price"],
+                "current_price": p["current_price"],
+                "return_pct": p["return_pct"],
+                "weight": p["weight"]
+            }
+            for p in portfolio["positions"]
+        ]
+    }
+
+    held["portfolios"].append(held_portfolio)
+    held["portfolios"] = sorted(
+        held["portfolios"],
+        key=lambda item: item["origin_month_id"],
+        reverse=True
+    )
+    save_json(HELD_POSITIONS_PATH, held)
+
+
 def main():
+    ensure_json_file(HELD_POSITIONS_PATH, {"portfolios": []})
+
     portfolio = load_json(CURRENT_PORTFOLIO_PATH)
     benchmarks = load_json(BENCHMARKS_PATH)
     performance = load_json(PERFORMANCE_PATH)
@@ -81,13 +132,9 @@ def main():
     history.append(completed_month)
     history = sorted(history, key=lambda item: item["month_id"], reverse=True)
 
-    track_record = calculate_track_record([
-        {
-            **item,
-            "alpha_vs_dnb": item["alpha_vs_dnb"] if item["alpha_vs_dnb"] is not None else 0
-        }
-        for item in history
-    ])
+    track_record = calculate_track_record(history)
+
+    add_to_held_positions(portfolio, performance, end_date)
 
     month_file_path = os.path.join(MONTHS_DIR, f"{portfolio['month_id']}.json")
     if os.path.exists(month_file_path):
@@ -99,7 +146,7 @@ def main():
     save_json(TRACK_RECORD_PATH, track_record)
 
     print(f"La til {portfolio['label']} i monthly_history.json")
-    print("Oppdaterte track_record.json og satte månedsfil til completed")
+    print("Oppdaterte track_record.json, held_positions.json og satte månedsfil til completed")
 
 
 if __name__ == "__main__":

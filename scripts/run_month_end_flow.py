@@ -26,12 +26,12 @@ def main():
         sys.exit(1)
 
     run_step(["python3", os.path.join("scripts", "parse_month_end_output.py"), month_id])
-    run_step(["python3", os.path.join("scripts", "rebuild_months_index.py")])
     run_step(["python3", os.path.join("scripts", "apply_month_to_active.py"), month_id])
     run_step(["python3", os.path.join("scripts", "update_prices.py")])
     run_step(["python3", os.path.join("scripts", "rollover_month.py")])
+    run_step(["python3", os.path.join("scripts", "rebuild_months_index.py")])
 
-    print("\n[Ferdig] Månedsslutt er lagt inn og måneden er bokført i historikk/track record.")
+    print("\n[Ferdig] Månedsslutt er lagt inn, måneden er bokført, og index er oppdatert.")
 
 
 if __name__ == "__main__":
