@@ -10,8 +10,8 @@
     "secondary": "DNB Global Indeks",
     "sp500_proxy_ticker": "SPY",
     "sp500_buy_price": 710.14,
-    "dnb_global_indeks_buy_nav": null,
-    "dnb_global_indeks_as_of_date": "2026-05-01"
+    "dnb_global_indeks_buy_nav": 794.22,
+    "dnb_global_indeks_as_of_date": "15. apr. 2026"
   },
   "market_context": {
     "summary": "S&P 500 er nær rekordnivåer igjen etter kraftig oljelettelse, men Fed er fortsatt avventende og mars-KPI var varm; best setup nå er derfor likvide aksjer med fersk earnings-støtte og tydelige sektordrivere.",

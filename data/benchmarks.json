@@ -11,9 +11,9 @@
   },
   "dnb_global_indeks": {
     "name": "DNB Global Indeks",
-    "buy_nav": null,
-    "current_nav": null,
-    "return_pct": null,
-    "as_of_date": "2026-05-01"
+    "buy_nav": 794.22,
+    "current_nav": 794.22,
+    "return_pct": 0,
+    "as_of_date": "15. apr. 2026"
   }
 }
