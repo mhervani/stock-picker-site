@@ -33,6 +33,9 @@ def main():
     month_path = os.path.join(MONTHS_DIR, f"{month_id}.json")
     month = load_json(month_path)
 
+    dnb_buy_nav = month["benchmarks"].get("dnb_global_indeks_buy_nav")
+    dnb_as_of_date = month["benchmarks"].get("dnb_global_indeks_as_of_date")
+
     current_portfolio = {
         "month_id": month["month_id"],
         "label": month["label"],
@@ -71,10 +74,10 @@ def main():
         },
         "dnb_global_indeks": {
             "name": month["benchmarks"]["secondary"],
-            "buy_nav": month["benchmarks"]["dnb_global_indeks_buy_nav"],
-            "current_nav": month["benchmarks"]["dnb_global_indeks_buy_nav"],
-            "return_pct": None if month["benchmarks"]["dnb_global_indeks_buy_nav"] in (None, 0) else 0,
-            "as_of_date": month["benchmarks"]["dnb_global_indeks_as_of_date"]
+            "buy_nav": dnb_buy_nav,
+            "current_nav": dnb_buy_nav,
+            "return_pct": None if dnb_buy_nav in (None, 0) else 0,
+            "as_of_date": dnb_as_of_date
         }
     }
 
@@ -89,7 +92,7 @@ def main():
         "updated_at": None,
         "portfolio_return_pct": 0,
         "alpha_vs_sp500": 0,
-        "alpha_vs_dnb": None if month["benchmarks"]["dnb_global_indeks_buy_nav"] in (None, 0) else 0,
+        "alpha_vs_dnb": None if dnb_buy_nav in (None, 0) else 0,
         "best_contributor": {
             "ticker": "",
             "return_pct": 0
@@ -106,6 +109,7 @@ def main():
     save_json(PERFORMANCE_PATH, performance)
 
     print(f"Aktiv måned satt til {month_id}")
+    print(f"DNB buy_nav i aktiv benchmarkfil: {dnb_buy_nav}")
 
 
 if __name__ == "__main__":
