@@ -9,37 +9,81 @@
 <body>
   <header class="site-header">
     <div class="container">
-      <h1>Total track record</h1>
-      <p class="subtitle">Aggregert resultat på tvers av avsluttede måneder</p>
+      <h1>Track record</h1>
+      <p class="subtitle">Samlet oversikt over ferdige måneder og videre tracking</p>
     </div>
   </header>
 
   <main class="container">
-    <section class="track-grid" id="track-grid">
-      <div class="stat-box">
-        <span>Måneder fullført</span>
-        <strong id="months-completed">–</strong>
+    <section class="hero-card compact-hero">
+      <div>
+        <p class="eyebrow">Total oversikt</p>
+        <h2 id="track-record-title">Laster...</h2>
+        <p class="muted" id="track-record-subtitle">–</p>
       </div>
-      <div class="stat-box">
-        <span>Slått S&P 500</span>
-        <strong id="beat-sp500">–</strong>
+
+      <div class="hero-stats">
+        <div class="stat-box">
+          <span>Måneder fullført</span>
+          <strong id="months-completed">–</strong>
+        </div>
+        <div class="stat-box">
+          <span>Slo S&amp;P 500</span>
+          <strong id="beat-sp500-count">–</strong>
+        </div>
+        <div class="stat-box">
+          <span>Slo DNB Global</span>
+          <strong id="beat-dnb-count">–</strong>
+        </div>
       </div>
-      <div class="stat-box">
-        <span>Slått DNB Global</span>
-        <strong id="beat-dnb">–</strong>
+    </section>
+
+    <section class="stats-grid">
+      <article class="panel">
+        <h2>Gjennomsnittlig alpha</h2>
+        <p><strong>vs S&amp;P 500:</strong> <span id="avg-alpha-sp500">–</span></p>
+        <p><strong>vs DNB Global:</strong> <span id="avg-alpha-dnb">–</span></p>
+      </article>
+
+      <article class="panel">
+        <h2>Kumulativ avkastning</h2>
+        <p><strong>Portefølje:</strong> <span id="cumulative-return">–</span></p>
+      </article>
+
+      <article class="panel">
+        <h2>What if held</h2>
+        <p><strong>Antall videre trackede porteføljer:</strong> <span id="held-portfolio-count">–</span></p>
+      </article>
+    </section>
+
+    <section class="panel">
+      <div class="section-header">
+        <h2>Ferdige måneder</h2>
       </div>
-      <div class="stat-box">
-        <span>Snitt alpha vs S&P 500</span>
-        <strong id="avg-alpha-sp500">–</strong>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Måned</th>
+              <th>Kjøpsdato</th>
+              <th>Sluttdato</th>
+              <th>Portefølje</th>
+              <th>S&amp;P 500</th>
+              <th>DNB Global</th>
+              <th>Alpha vs S&amp;P</th>
+              <th>Alpha vs DNB</th>
+            </tr>
+          </thead>
+          <tbody id="track-record-table-body"></tbody>
+        </table>
       </div>
-      <div class="stat-box">
-        <span>Snitt alpha vs DNB</span>
-        <strong id="avg-alpha-dnb">–</strong>
+    </section>
+
+    <section class="panel">
+      <div class="section-header">
+        <h2>What if held</h2>
       </div>
-      <div class="stat-box">
-        <span>Kumulativ avkastning</span>
-        <strong id="cumulative-return">–</strong>
-      </div>
+      <div id="held-list" class="history-list"></div>
     </section>
 
     <section class="links-section">

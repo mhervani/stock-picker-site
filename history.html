@@ -10,13 +10,38 @@
   <header class="site-header">
     <div class="container">
       <h1>Historikk</h1>
-      <p class="subtitle">Tidligere og aktive måneder</p>
+      <p class="subtitle">Tidligere og aktive måneder i eksperimentet</p>
     </div>
   </header>
 
   <main class="container">
+    <section class="hero-card compact-hero">
+      <div>
+        <p class="eyebrow">Oversikt</p>
+        <h2 id="history-active-month">Laster...</h2>
+        <p class="muted" id="history-month-count">Antall måneder: –</p>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat-box">
+          <span>Aktiv måned</span>
+          <strong id="history-active-label">–</strong>
+        </div>
+        <div class="stat-box">
+          <span>Ferdige måneder</span>
+          <strong id="history-completed-count">–</strong>
+        </div>
+        <div class="stat-box">
+          <span>Tracking videre</span>
+          <strong id="history-held-count">–</strong>
+        </div>
+      </div>
+    </section>
+
     <section class="panel">
-      <h2>Måneder</h2>
+      <div class="section-header">
+        <h2>Måneder</h2>
+      </div>
       <div id="history-list" class="history-list"></div>
     </section>
 
