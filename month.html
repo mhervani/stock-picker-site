@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Månedsdetaljer</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1 id="month-page-title">Månedsdetaljer</h1>
+      <p class="subtitle">Detaljvisning av analyse, picks og porteføljecase</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero-card">
+      <div>
+        <p class="eyebrow">Måned</p>
+        <h2 id="month-label">Laster...</h2>
+        <p id="month-buy-date">Kjøpsdato: –</p>
+        <p id="month-analysis-date" class="muted">Analysedato: –</p>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat-box">
+          <span>Konklusjon</span>
+          <strong id="portfolio-conclusion">–</strong>
+        </div>
+        <div class="stat-box">
+          <span>Porteføljekonfidens</span>
+          <strong id="portfolio-confidence">–</strong>
+        </div>
+        <div class="stat-box">
+          <span>Rangering</span>
+          <strong id="portfolio-ranking">–</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Markedsbilde</h2>
+      <p id="market-summary">–</p>
+      <p class="muted" id="freshness-note">–</p>
+    </section>
+
+    <section class="panel">
+      <h2>Hvorfor porteføljen kan slå benchmark</h2>
+      <p id="portfolio-case">–</p>
+    </section>
+
+    <section class="panel">
+      <h2>Største samlede risiko</h2>
+      <p id="portfolio-risk">–</p>
+    </section>
+
+    <section>
+      <div class="section-header">
+        <h2>Picks</h2>
+      </div>
+      <div id="month-positions-grid" class="positions-grid"></div>
+    </section>
+
+    <section class="panel">
+      <h2>2-ukers oppdatering</h2>
+      <div id="midmonth-block">
+        <p>Ingen oppdatering lagt inn ennå.</p>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Månedsslutt</h2>
+      <div id="month-end-block">
+        <p>Ingen månedsslutt lagt inn ennå.</p>
+      </div>
+    </section>
+
+    <section class="links-section">
+      <a class="nav-link" href="index.html">Tilbake til forsiden</a>
+      <a class="nav-link" href="history.html">Se historikk</a>
+      <a class="nav-link" href="track-record.html">Se total track record</a>
+    </section>
+  </main>
+
+  <script src="assets/js/month.js"></script>
+</body>
+</html>

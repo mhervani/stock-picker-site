@@ -176,3 +176,8 @@ body {
     grid-template-columns: 1fr;
   }
 }
+.sub-block {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid #273156;
+}
