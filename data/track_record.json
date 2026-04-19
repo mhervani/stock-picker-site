@@ -1,8 +1,8 @@
 {
-  "months_completed": 1,
-  "beat_sp500_count": 1,
-  "beat_dnb_count": 1,
-  "avg_alpha_vs_sp500": 2.6,
-  "avg_alpha_vs_dnb": 2.9,
-  "cumulative_portfolio_return_pct": 4.8
+  "months_completed": 2,
+  "beat_sp500_count": 2,
+  "beat_dnb_count": 2,
+  "avg_alpha_vs_sp500": 5.3001,
+  "avg_alpha_vs_dnb": 24.5375,
+  "cumulative_portfolio_return_pct": 51.9751
 }
