@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stock Picker Experiment</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1>30-dagers Stock Picking Experiment</h1>
+      <p class="subtitle">Månedens portefølje, benchmark og oppdateringer</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero-card">
+      <div>
+        <p class="eyebrow">Aktiv måned</p>
+        <h2 id="month-label">Laster...</h2>
+        <p id="buy-date">Kjøpsdato: –</p>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-box">
+          <span>Portefølje</span>
+          <strong id="portfolio-return">–</strong>
+        </div>
+        <div class="stat-box">
+          <span>vs S&P 500</span>
+          <strong id="alpha-sp500">–</strong>
+        </div>
+        <div class="stat-box">
+          <span>vs DNB Global</span>
+          <strong id="alpha-dnb">–</strong>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-header">
+        <h2>Månedens picks</h2>
+      </div>
+      <div id="positions-grid" class="positions-grid"></div>
+    </section>
+
+    <section class="benchmark-section">
+      <div class="section-header">
+        <h2>Benchmarks</h2>
+      </div>
+      <div class="benchmark-grid">
+        <div class="panel">
+          <h3>S&P 500</h3>
+          <p>Avkastning siden kjøp: <strong id="sp500-return">–</strong></p>
+        </div>
+        <div class="panel">
+          <h3>DNB Global Indeks</h3>
+          <p>Avkastning siden kjøp: <strong id="dnb-return">–</strong></p>
+          <p class="muted" id="dnb-date">Sist oppdatert NAV: –</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="update-section">
+      <div class="section-header">
+        <h2>2-ukers oppdatering</h2>
+      </div>
+      <div class="panel">
+        <p class="muted" id="midmonth-date">Dato: –</p>
+        <p id="midmonth-summary">Ingen oppdatering lagt inn ennå.</p>
+        <p><strong>Hold videre til dag 30:</strong> <span id="hold-decision">–</span></p>
+        <p><strong>Største risiko neste 2 uker:</strong> <span id="biggest-risk">–</span></p>
+      </div>
+    </section>
+
+    <section class="links-section">
+      <a class="nav-link" href="history.html">Se historikk</a>
+      <a class="nav-link" href="track-record.html">Se total track record</a>
+    </section>
+  </main>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+{
+  "month_id": "2026-04",
+  "label": "April 2026",
+  "buy_date": "2026-04-01",
+  "status": "active",
+  "positions": [
+    {
+      "ticker": "NVDA",
+      "company": "NVIDIA",
+      "exchange": "NASDAQ",
+      "country": "USA",
+      "sector": "Technology",
+      "buy_price": 108.42,
+      "current_price": 112.30,
+      "weight": 0.333,
+      "thesis": "Sterk AI-momentum og sannsynlig positiv kapitalflyt.",
+      "catalysts_30d": [
+        "Analytikerrevisjoner",
+        "Videre AI-etterspørsel"
+      ],
+      "risk": "Høy verdsettelse og rask sentimentendring."
+    },
+    {
+      "ticker": "ASML",
+      "company": "ASML",
+      "exchange": "Euronext Amsterdam",
+      "country": "Netherlands",
+      "sector": "Semiconductors",
+      "buy_price": 921.00,
+      "current_price": 945.20,
+      "weight": 0.333,
+      "thesis": "Strukturell halvlederstyrke og kvalitetsprofil i sektoren.",
+      "catalysts_30d": [
+        "Kapitalflyt mot kvalitet",
+        "Stabile investeringsforventninger"
+      ],
+      "risk": "Makrosvakhet og svakere chip-sentiment."
+    },
+    {
+      "ticker": "UBER",
+      "company": "Uber Technologies",
+      "exchange": "NYSE",
+      "country": "USA",
+      "sector": "Industrials",
+      "buy_price": 79.50,
+      "current_price": 81.44,
+      "weight": 0.333,
+      "thesis": "Bedret lønnsomhet og fortsatt operasjonell styrke.",
+      "catalysts_30d": [
+        "Marginforbedring",
+        "Stabil vekst i bookings"
+      ],
+      "risk": "Regulatorisk risiko og svak risikosentiment."
+    }
+  ]
+}
