@@ -69,6 +69,7 @@ async function init() {
     `Kurs nå: ${formatNumber(benchmarks.sp500.current_price)}`;
 
   const dnbReturnEl = document.getElementById("dnb-return");
+  const dnbCurrentNavEl = document.getElementById("dnb-current-nav");
   const dnbDateEl = document.getElementById("dnb-date");
 
   if (
@@ -77,9 +78,12 @@ async function init() {
     benchmarks.dnb_global_indeks.buy_nav === 0
   ) {
     dnbReturnEl.textContent = "Ikke tilgjengelig";
+    dnbCurrentNavEl.textContent = "NAV nå: ikke tilgjengelig";
     dnbDateEl.textContent = "Sist oppdatert NAV: ikke tilgjengelig";
   } else {
     dnbReturnEl.textContent = formatPercent(benchmarks.dnb_global_indeks.return_pct);
+    dnbCurrentNavEl.textContent =
+      `NAV nå: ${formatNumber(benchmarks.dnb_global_indeks.current_nav)}`;
     dnbDateEl.textContent =
       `Sist oppdatert NAV: ${formatDateText(benchmarks.dnb_global_indeks.as_of_date)}`;
   }
@@ -114,9 +118,13 @@ async function init() {
     document.getElementById("midmonth-summary").textContent =
       updates.midmonth_update.summary;
     document.getElementById("hold-decision").textContent =
-      updates.midmonth_update.hold_to_day_30 || updates.midmonth_update.hold_recommendation || "–";
+      updates.midmonth_update.hold_to_day_30 ||
+      updates.midmonth_update.hold_recommendation ||
+      "–";
     document.getElementById("biggest-risk").textContent =
-      updates.midmonth_update.biggest_risk_next_2w || updates.midmonth_update.biggest_risk_rest_of_month || "–";
+      updates.midmonth_update.biggest_risk_next_2w ||
+      updates.midmonth_update.biggest_risk_rest_of_month ||
+      "–";
   }
 }
 
