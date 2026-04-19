@@ -152,3 +152,27 @@ body {
     grid-template-columns: 1fr;
   }
 }
+.history-list,
+.track-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.history-card {
+  background: #141b34;
+  border: 1px solid #273156;
+  border-radius: 16px;
+  padding: 20px;
+}
+
+.track-grid {
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 20px;
+  margin-bottom: 28px;
+}
+
+@media (max-width: 900px) {
+  .track-grid {
+    grid-template-columns: 1fr;
+  }
+}

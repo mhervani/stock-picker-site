@@ -7,9 +7,25 @@
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body>
-  <main class="container simple-page">
-    <h1>Historikk</h1>
-    <p>Denne siden kobler vi på i neste steg.</p>
-    <p><a class="nav-link" href="index.html">Tilbake til forsiden</a></p>
+  <header class="site-header">
+    <div class="container">
+      <h1>Historikk</h1>
+      <p class="subtitle">Tidligere måneders porteføljer og benchmark-resultater</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="panel">
+      <h2>Avsluttede måneder</h2>
+      <div id="history-list" class="history-list"></div>
+    </section>
+
+    <section class="links-section">
+      <a class="nav-link" href="index.html">Tilbake til forsiden</a>
+      <a class="nav-link" href="track-record.html">Se total track record</a>
+    </section>
   </main>
+
+  <script src="assets/js/history.js"></script>
 </body>
+</html>

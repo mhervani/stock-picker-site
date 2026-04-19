@@ -7,10 +7,47 @@
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body>
-  <main class="container simple-page">
-    <h1>Total track record</h1>
-    <p>Denne siden kobler vi på i neste steg.</p>
-    <p><a class="nav-link" href="index.html">Tilbake til forsiden</a></p>
+  <header class="site-header">
+    <div class="container">
+      <h1>Total track record</h1>
+      <p class="subtitle">Aggregert resultat på tvers av avsluttede måneder</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="track-grid" id="track-grid">
+      <div class="stat-box">
+        <span>Måneder fullført</span>
+        <strong id="months-completed">–</strong>
+      </div>
+      <div class="stat-box">
+        <span>Slått S&P 500</span>
+        <strong id="beat-sp500">–</strong>
+      </div>
+      <div class="stat-box">
+        <span>Slått DNB Global</span>
+        <strong id="beat-dnb">–</strong>
+      </div>
+      <div class="stat-box">
+        <span>Snitt alpha vs S&P 500</span>
+        <strong id="avg-alpha-sp500">–</strong>
+      </div>
+      <div class="stat-box">
+        <span>Snitt alpha vs DNB</span>
+        <strong id="avg-alpha-dnb">–</strong>
+      </div>
+      <div class="stat-box">
+        <span>Kumulativ avkastning</span>
+        <strong id="cumulative-return">–</strong>
+      </div>
+    </section>
+
+    <section class="links-section">
+      <a class="nav-link" href="index.html">Tilbake til forsiden</a>
+      <a class="nav-link" href="history.html">Se historikk</a>
+    </section>
   </main>
+
+  <script src="assets/js/track-record.js"></script>
 </body>
 </html>
