@@ -40,6 +40,12 @@ async function init() {
   const benchmarks = await loadJson("data/benchmarks.json");
   const updates = await loadJson("data/updates.json");
   const performance = await loadJson("data/performance.json");
+  const monthsIndex = await loadJson("data/months/index.json");
+
+  const activeMonthLink = document.getElementById("active-month-link");
+  if (activeMonthLink && monthsIndex.active_month) {
+    activeMonthLink.href = `month.html?month=${monthsIndex.active_month}`;
+  }
 
   document.getElementById("month-label").textContent = portfolio.label;
   document.getElementById("buy-date").textContent = `Kjøpsdato: ${portfolio.buy_date}`;

@@ -6,44 +6,34 @@ async function loadJson(path) {
   return response.json();
 }
 
-function formatPercent(value) {
-  const sign = value > 0 ? "+" : "";
-  return `${sign}${value.toFixed(2)}%`;
-}
-
-function getReturnClass(value) {
-  if (value > 0) return "positive";
-  if (value < 0) return "negative";
-  return "neutral";
-}
-
 async function initHistory() {
-  const history = await loadJson("data/monthly_history.json");
+  const index = await loadJson("data/months/index.json");
   const list = document.getElementById("history-list");
 
-  if (!history.length) {
-    list.innerHTML = "<p>Ingen historikk ennå.</p>";
+  if (!index.months || !index.months.length) {
+    list.innerHTML = "<p>Ingen måneder ennå.</p>";
     return;
   }
 
   list.innerHTML = "";
 
-  history.forEach((month) => {
+  for (const monthMeta of index.months) {
+    const month = await loadJson(`data/months/${monthMeta.month_id}.json`);
+
     const item = document.createElement("article");
     item.className = "history-card";
 
     item.innerHTML = `
       <h3>${month.label}</h3>
-      <p class="muted">Kjøpt: ${month.buy_date} · Avsluttet: ${month.end_date}</p>
-      <p><strong>Portefølje:</strong> <span class="${getReturnClass(month.portfolio_return_pct)}">${formatPercent(month.portfolio_return_pct)}</span></p>
-      <p><strong>S&P 500:</strong> <span class="${getReturnClass(month.sp500_return_pct)}">${formatPercent(month.sp500_return_pct)}</span></p>
-      <p><strong>DNB Global Indeks:</strong> <span class="${getReturnClass(month.dnb_global_indeks_return_pct)}">${formatPercent(month.dnb_global_indeks_return_pct)}</span></p>
-      <p><strong>Alpha vs S&P 500:</strong> <span class="${getReturnClass(month.alpha_vs_sp500)}">${formatPercent(month.alpha_vs_sp500)}</span></p>
-      <p><strong>Alpha vs DNB:</strong> <span class="${getReturnClass(month.alpha_vs_dnb)}">${formatPercent(month.alpha_vs_dnb)}</span></p>
+      <p class="muted">Kjøpsdato: ${month.buy_date} · Status: ${month.status}</p>
+      <p><strong>Konklusjon:</strong> ${month.market_context.portfolio_conclusion || "–"}</p>
+      <p><strong>Rangering:</strong> ${(month.portfolio.ranking || []).join(" > ")}</p>
+      <p><strong>Porteføljekonfidens:</strong> ${month.market_context.portfolio_confidence || "–"}/10</p>
+      <p><a class="nav-link" href="month.html?month=${month.month_id}">Åpne månedsdetaljer</a></p>
     `;
 
     list.appendChild(item);
-  });
+  }
 }
 
 initHistory().catch((error) => {
