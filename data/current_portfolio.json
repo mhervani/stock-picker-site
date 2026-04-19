@@ -5,56 +5,59 @@
   "status": "active",
   "positions": [
     {
-      "ticker": "MSFT",
-      "company": "Microsoft",
-      "exchange": "NASDAQ",
-      "country": "USA",
-      "sector": "Technology",
-      "buy_price": 425.0,
-      "current_price": 422.79,
-      "return_pct": -0.52,
+      "ticker": "TSM",
+      "company": "Taiwan Semiconductor Manufacturing Company Limited ADR",
+      "exchange": "NYSE",
+      "country": "Taiwan",
+      "sector": "Information Technology",
+      "buy_price": 370.5,
+      "current_price": 370.5,
+      "return_pct": 0.0,
       "weight": 0.333,
-      "thesis": "Sterk kvalitetseksponering mot AI og enterprise software.",
+      "thesis": "TSM har den sterkeste verifiserte kombinasjonen av fersk vekst, guide-up og AI-etterspørsel i universet akkurat nå, og hovedearnings-risikoen før kjøpsdato er allerede passert.",
       "catalysts_30d": [
-        "Videre AI-momentum",
-        "Stabil kapitalflyt til megacap kvalitet"
+        "Q1 2026 overgikk egen guiding",
+        "2026-helårsvekst løftet til over 30%",
+        "April-omsetning publiseres 2026-05-08"
       ],
-      "risk": "Høy forventning i multipler og mulig rotasjon ut av megacap."
+      "risk": "AI-capex-sentiment kan snu raskt, og Midtøsten-relaterte innsatskostnader/logistikk kan presse marginforventninger."
     },
     {
-      "ticker": "LLY",
-      "company": "Eli Lilly",
+      "ticker": "JPM",
+      "company": "JPMorgan Chase & Co.",
       "exchange": "NYSE",
       "country": "USA",
-      "sector": "Healthcare",
-      "buy_price": 780.0,
-      "current_price": 927.03,
-      "return_pct": 18.85,
+      "sector": "Financials",
+      "buy_price": 310.29,
+      "current_price": 310.29,
+      "return_pct": 0.0,
       "weight": 0.333,
-      "thesis": "Defensiv kvalitetsvekst med sterk inntjeningsprofil og robust etterspørselssentiment.",
+      "thesis": "JPM er den reneste store, likvide eksponeringen mot sterk trading, bedret investment banking og fortsatt robust amerikansk aktivitet, med fersk Q1-bekreftelse.",
       "catalysts_30d": [
-        "Stabil defensiv sektorrotasjon",
-        "Fortsatt positiv etterspørselssentiment"
+        "Q1 2026 EPS 5.94 og nettoresultat 16.5 mrd. USD",
+        "Markets revenue +20% og investment banking fees +38%",
+        "Årsmøte 2026-05-19"
       ],
-      "risk": "Høy verdsettelse og sensitivitet for skuffende nyhetsflyt."
+      "risk": "Hvis olje/inflasjon biter mer i forbruker og kreditt enn bankene nå antar, kan estimatrevisjonene snu ned igjen."
     },
     {
-      "ticker": "UBER",
-      "company": "Uber Technologies",
+      "ticker": "DAL",
+      "company": "Delta Air Lines, Inc.",
       "exchange": "NYSE",
       "country": "USA",
       "sector": "Industrials",
-      "buy_price": 82.0,
-      "current_price": 77.12,
-      "return_pct": -5.9512,
+      "buy_price": 71.72,
+      "current_price": 71.72,
+      "return_pct": 0.0,
       "weight": 0.333,
-      "thesis": "Marginforbedring og robust operasjonell utvikling.",
+      "thesis": "Delta gir taktisk eksponering mot fortsatt sterk premium- og corporate travel etter at selskapet allerede har vist at etterspørselen holdt seg oppe gjennom energisjokket.",
       "catalysts_30d": [
-        "Marginforbedring",
-        "Videre sterk bookings-trend"
+        "Rekordomsetning i marskvartalet",
+        "85% av corporate-travel-survey peker på økt eller stabilt juni-kvartal",
+        "Fallende olje ga travel-sektoren klart løft 2026-04-17"
       ],
-      "risk": "Regulatorisk risiko og svak risk-on sentiment."
+      "risk": "Dette er den mest usikre posisjonen; ny oljeoppgang eller vedvarende jet-fuel-press kan raskt spise opp caset."
     }
   ],
-  "updated_at": "2026-04-19T10:09:13+00:00"
+  "updated_at": "2026-04-19T11:25:43+00:00"
 }

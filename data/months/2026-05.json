@@ -1,0 +1,86 @@
+{
+  "month_id": "2026-05",
+  "label": "Mai 2026",
+  "status": "active",
+  "buy_date": "2026-05-01",
+  "analysis_date": "2026-05-01",
+  "raw_source_file": "2026-05-portfolio.txt",
+  "benchmarks": {
+    "primary": "S&P 500",
+    "secondary": "DNB Global Indeks",
+    "sp500_proxy_ticker": "SPY",
+    "sp500_buy_price": 710.14,
+    "dnb_global_indeks_buy_nav": null,
+    "dnb_global_indeks_as_of_date": "2026-05-01"
+  },
+  "market_context": {
+    "summary": "S&P 500 er nær rekordnivåer igjen etter kraftig oljelettelse, men Fed er fortsatt avventende og mars-KPI var varm; best setup nå er derfor likvide aksjer med fersk earnings-støtte og tydelige sektordrivere.",
+    "freshness_note": "Analysen er bygget på verifiserte data tilgjengelig per 2026-04-19, særlig CPI 2026-04-10, PPI 2026-04-14, JPM Q1 2026 den 2026-04-14, TSMC Q1 2026 den 2026-04-16 og Delta Q1 2026 den 2026-04-08.",
+    "portfolio_conclusion": "Kjøp",
+    "portfolio_confidence": 6.7
+  },
+  "portfolio": {
+    "ranking": [
+      "TSM",
+      "JPM",
+      "DAL"
+    ],
+    "why_this_portfolio_can_win": "Kombinasjonen av bekreftet AI-semi-styrke, sterk kapitalmarkedsbredde i bank og taktisk travel/oil-relief gir tre ulike kilder til mulig meravkastning i mai.",
+    "biggest_portfolio_risk": "Ny oljeoppgang eller geopolitisk eskalering som løfter inflasjons- og vekstfrykt og rammer særlig DAL, men også multipler i TSM og JPM."
+  },
+  "positions": [
+    {
+      "ticker": "TSM",
+      "company": "Taiwan Semiconductor Manufacturing Company Limited ADR",
+      "exchange": "NYSE",
+      "country": "Taiwan",
+      "sector": "Information Technology",
+      "buy_price": 370.5,
+      "weight": 0.333,
+      "thesis": "TSM har den sterkeste verifiserte kombinasjonen av fersk vekst, guide-up og AI-etterspørsel i universet akkurat nå, og hovedearnings-risikoen før kjøpsdato er allerede passert.",
+      "catalysts": [
+        "Q1 2026 overgikk egen guiding",
+        "2026-helårsvekst løftet til over 30%",
+        "April-omsetning publiseres 2026-05-08"
+      ],
+      "risk": "AI-capex-sentiment kan snu raskt, og Midtøsten-relaterte innsatskostnader/logistikk kan presse marginforventninger.",
+      "confidence": 8
+    },
+    {
+      "ticker": "JPM",
+      "company": "JPMorgan Chase & Co.",
+      "exchange": "NYSE",
+      "country": "USA",
+      "sector": "Financials",
+      "buy_price": 310.29,
+      "weight": 0.333,
+      "thesis": "JPM er den reneste store, likvide eksponeringen mot sterk trading, bedret investment banking og fortsatt robust amerikansk aktivitet, med fersk Q1-bekreftelse.",
+      "catalysts": [
+        "Q1 2026 EPS 5.94 og nettoresultat 16.5 mrd. USD",
+        "Markets revenue +20% og investment banking fees +38%",
+        "Årsmøte 2026-05-19"
+      ],
+      "risk": "Hvis olje/inflasjon biter mer i forbruker og kreditt enn bankene nå antar, kan estimatrevisjonene snu ned igjen.",
+      "confidence": 7
+    },
+    {
+      "ticker": "DAL",
+      "company": "Delta Air Lines, Inc.",
+      "exchange": "NYSE",
+      "country": "USA",
+      "sector": "Industrials",
+      "buy_price": 71.72,
+      "weight": 0.333,
+      "thesis": "Delta gir taktisk eksponering mot fortsatt sterk premium- og corporate travel etter at selskapet allerede har vist at etterspørselen holdt seg oppe gjennom energisjokket.",
+      "catalysts": [
+        "Rekordomsetning i marskvartalet",
+        "85% av corporate-travel-survey peker på økt eller stabilt juni-kvartal",
+        "Fallende olje ga travel-sektoren klart løft 2026-04-17"
+      ],
+      "risk": "Dette er den mest usikre posisjonen; ny oljeoppgang eller vedvarende jet-fuel-press kan raskt spise opp caset.",
+      "confidence": 5
+    }
+  ],
+  "midmonth_update": null,
+  "month_end": null
+}
