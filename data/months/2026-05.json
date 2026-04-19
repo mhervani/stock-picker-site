@@ -1,6 +1,6 @@
 {
   "month_id": "2026-05",
-  "label": "Mai 2026",
+  "label": "Runde 1",
   "status": "active",
   "buy_date": "2026-05-01",
   "analysis_date": "2026-05-01",
@@ -9,7 +9,7 @@
     "primary": "S&P 500",
     "secondary": "DNB Global Indeks",
     "sp500_proxy_ticker": "SPY",
-    "sp500_buy_price": 710.14,
+    "sp500_buy_price": 710.16,
     "dnb_global_indeks_buy_nav": 794.22,
     "dnb_global_indeks_as_of_date": "15. apr. 2026"
   },
@@ -35,7 +35,7 @@
       "exchange": "NYSE",
       "country": "Taiwan",
       "sector": "Information Technology",
-      "buy_price": 370.5,
+      "buy_price": 370.52,
       "weight": 0.333,
       "thesis": "TSM har den sterkeste verifiserte kombinasjonen av fersk vekst, guide-up og AI-etterspørsel i universet akkurat nå, og hovedearnings-risikoen før kjøpsdato er allerede passert.",
       "catalysts": [
@@ -52,7 +52,7 @@
       "exchange": "NYSE",
       "country": "USA",
       "sector": "Financials",
-      "buy_price": 310.29,
+      "buy_price": 310.31,
       "weight": 0.333,
       "thesis": "JPM er den reneste store, likvide eksponeringen mot sterk trading, bedret investment banking og fortsatt robust amerikansk aktivitet, med fersk Q1-bekreftelse.",
       "catalysts": [
@@ -69,7 +69,7 @@
       "exchange": "NYSE",
       "country": "USA",
       "sector": "Industrials",
-      "buy_price": 71.72,
+      "buy_price": 71.74,
       "weight": 0.333,
       "thesis": "Delta gir taktisk eksponering mot fortsatt sterk premium- og corporate travel etter at selskapet allerede har vist at etterspørselen holdt seg oppe gjennom energisjokket.",
       "catalysts": [
