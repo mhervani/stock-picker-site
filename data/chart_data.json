@@ -1,0 +1,11 @@
+{
+  "month_id": "2026-05",
+  "series": [
+    {
+      "timestamp": "2026-04-19T13:51:47+00:00",
+      "portfolio_return_pct": 0.0132,
+      "sp500_return_pct": 0.0028,
+      "dnb_return_pct": 0.0
+    }
+  ]
+}

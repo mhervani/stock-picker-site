@@ -13,6 +13,7 @@ DATA_DIR = os.path.join(BASE_DIR, "data")
 CURRENT_PORTFOLIO_PATH = os.path.join(DATA_DIR, "current_portfolio.json")
 BENCHMARKS_PATH = os.path.join(DATA_DIR, "benchmarks.json")
 PERFORMANCE_PATH = os.path.join(DATA_DIR, "performance.json")
+CHART_DATA_PATH = os.path.join(DATA_DIR, "chart_data.json")
 
 API_KEY = os.getenv("FINNHUB_API_KEY")
 
@@ -88,7 +89,6 @@ def try_fetch_dnb_nav_from_dnb():
     anchor = re.search(r"NAV/Kurs", text, re.IGNORECASE)
     if anchor:
         snippet = text[anchor.start(): anchor.start() + 300]
-
         nav_match = re.search(r"(\d+[.,]\d+)\s+kroner", snippet, re.IGNORECASE)
         date_match = re.search(r"(\d{1,2}\.\s*[A-Za-zæøåÆØÅ]{3,}\.?\s*\d{4})", snippet, re.IGNORECASE)
 
@@ -142,13 +142,10 @@ def calculate_return_pct(buy_price, current_price):
 
 
 def calculate_portfolio_return(positions):
-    if not positions:
+    valid = [p["return_pct"] for p in positions if p["return_pct"] is not None]
+    if not valid:
         return 0.0
-    total = sum(position["return_pct"] for position in positions if position["return_pct"] is not None)
-    count = sum(1 for position in positions if position["return_pct"] is not None)
-    if count == 0:
-        return 0.0
-    return total / count
+    return sum(valid) / len(valid)
 
 
 def find_best_contributor(positions):
@@ -159,6 +156,34 @@ def find_best_contributor(positions):
 def find_worst_contributor(positions):
     valid = [p for p in positions if p["return_pct"] is not None]
     return min(valid, key=lambda p: p["return_pct"]) if valid else {"ticker": "", "return_pct": 0}
+
+
+def append_chart_point(month_id, updated_at, portfolio_return, sp500_return, dnb_return):
+    chart_data = load_json(CHART_DATA_PATH)
+
+    if chart_data.get("month_id") != month_id:
+        chart_data = {
+            "month_id": month_id,
+            "series": []
+        }
+
+    new_point = {
+        "timestamp": updated_at,
+        "portfolio_return_pct": portfolio_return,
+        "sp500_return_pct": sp500_return,
+        "dnb_return_pct": dnb_return
+    }
+
+    if chart_data["series"]:
+        last_point = chart_data["series"][-1]
+        if last_point.get("timestamp") == updated_at:
+            chart_data["series"][-1] = new_point
+        else:
+            chart_data["series"].append(new_point)
+    else:
+        chart_data["series"].append(new_point)
+
+    save_json(CHART_DATA_PATH, chart_data)
 
 
 def main():
@@ -238,7 +263,15 @@ def main():
     save_json(BENCHMARKS_PATH, benchmarks)
     save_json(PERFORMANCE_PATH, performance)
 
-    print("Oppdaterte priser, benchmarks og performance.")
+    append_chart_point(
+        portfolio["month_id"],
+        updated_at,
+        portfolio_return,
+        benchmarks["sp500"]["return_pct"],
+        dnb_return
+    )
+
+    print("Oppdaterte priser, benchmarks, performance og chart_data.")
     print(f"updated_at={updated_at}")
 
 

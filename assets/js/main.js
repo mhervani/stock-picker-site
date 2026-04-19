@@ -35,12 +35,94 @@ function formatDateText(value) {
   return value;
 }
 
+function renderChart(chartData) {
+  const canvas = document.getElementById("performance-chart");
+  if (!canvas || !chartData || !chartData.series || !chartData.series.length) {
+    return;
+  }
+
+  const labels = chartData.series.map((point, index) => {
+    if (!point.timestamp) return index === 0 ? "Start" : "";
+    return new Date(point.timestamp).toLocaleString("no-NO", {
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit"
+    });
+  });
+
+  const portfolioData = chartData.series.map((point) => point.portfolio_return_pct);
+  const sp500Data = chartData.series.map((point) => point.sp500_return_pct);
+  const dnbData = chartData.series.map((point) => point.dnb_return_pct);
+
+  new Chart(canvas, {
+    type: "line",
+    data: {
+      labels,
+      datasets: [
+        {
+          label: "Portefølje",
+          data: portfolioData,
+          borderWidth: 2,
+          tension: 0.25
+        },
+        {
+          label: "S&P 500",
+          data: sp500Data,
+          borderWidth: 2,
+          tension: 0.25
+        },
+        {
+          label: "DNB Global Indeks",
+          data: dnbData,
+          borderWidth: 2,
+          tension: 0.25,
+          spanGaps: true
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: {
+        legend: {
+          labels: {
+            color: "#f5f7fb"
+          }
+        }
+      },
+      scales: {
+        x: {
+          ticks: {
+            color: "#aab4d0"
+          },
+          grid: {
+            color: "#273156"
+          }
+        },
+        y: {
+          ticks: {
+            color: "#aab4d0",
+            callback: function(value) {
+              return value + "%";
+            }
+          },
+          grid: {
+            color: "#273156"
+          }
+        }
+      }
+    }
+  });
+}
+
 async function init() {
   const portfolio = await loadJson("data/current_portfolio.json");
   const benchmarks = await loadJson("data/benchmarks.json");
   const updates = await loadJson("data/updates.json");
   const performance = await loadJson("data/performance.json");
   const monthsIndex = await loadJson("data/months/index.json");
+  const chartData = await loadJson("data/chart_data.json");
 
   const activeMonthLink = document.getElementById("active-month-link");
   if (activeMonthLink && monthsIndex.active_month) {
@@ -126,6 +208,8 @@ async function init() {
       updates.midmonth_update.biggest_risk_rest_of_month ||
       "–";
   }
+
+  renderChart(chartData);
 }
 
 init().catch((error) => {
