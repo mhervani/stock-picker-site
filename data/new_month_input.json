@@ -2,7 +2,6 @@
   "month_id": "2026-05",
   "label": "Mai 2026",
   "buy_date": "2026-05-01",
-  "status": "active",
   "positions": [
     {
       "ticker": "MSFT",
@@ -10,9 +9,7 @@
       "exchange": "NASDAQ",
       "country": "USA",
       "sector": "Technology",
-      "buy_price": 425.0,
-      "current_price": 422.79,
-      "return_pct": -0.52,
+      "buy_price": 425.00,
       "weight": 0.333,
       "thesis": "Sterk kvalitetseksponering mot AI og enterprise software.",
       "catalysts_30d": [
@@ -27,9 +24,7 @@
       "exchange": "NYSE",
       "country": "USA",
       "sector": "Healthcare",
-      "buy_price": 780.0,
-      "current_price": 927.03,
-      "return_pct": 18.85,
+      "buy_price": 780.00,
       "weight": 0.333,
       "thesis": "Defensiv kvalitetsvekst med sterk inntjeningsprofil og robust etterspørselssentiment.",
       "catalysts_30d": [
@@ -44,9 +39,7 @@
       "exchange": "NYSE",
       "country": "USA",
       "sector": "Industrials",
-      "buy_price": 82.0,
-      "current_price": 77.12,
-      "return_pct": -5.9512,
+      "buy_price": 82.00,
       "weight": 0.333,
       "thesis": "Marginforbedring og robust operasjonell utvikling.",
       "catalysts_30d": [
@@ -56,5 +49,17 @@
       "risk": "Regulatorisk risiko og svak risk-on sentiment."
     }
   ],
-  "updated_at": "2026-04-19T10:09:13+00:00"
+  "sp500": {
+    "name": "S&P 500",
+    "proxy_ticker": "SPY",
+    "buy_price": 525.00
+  },
+  "dnb_global_indeks": {
+    "name": "DNB Global Indeks",
+    "buy_nav": 420.00,
+    "current_nav": 420.00,
+    "return_pct": 0,
+    "as_of_date": "2026-05-01"
+  },
+  "initial_pick_note": "Denne måneden er porteføljen satt opp med tre ulike teser: megacap kvalitet, defensiv healthcare og operasjonell forbedring i mobility/plattform."
 }
