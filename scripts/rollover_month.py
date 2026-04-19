@@ -5,6 +5,7 @@ from datetime import datetime
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(BASE_DIR, "data")
+MONTHS_DIR = os.path.join(DATA_DIR, "months")
 
 CURRENT_PORTFOLIO_PATH = os.path.join(DATA_DIR, "current_portfolio.json")
 BENCHMARKS_PATH = os.path.join(DATA_DIR, "benchmarks.json")
@@ -72,21 +73,33 @@ def main():
         "end_date": end_date,
         "portfolio_return_pct": round(performance["portfolio_return_pct"], 4),
         "sp500_return_pct": round(benchmarks["sp500"]["return_pct"], 4),
-        "dnb_global_indeks_return_pct": round(benchmarks["dnb_global_indeks"]["return_pct"], 4),
+        "dnb_global_indeks_return_pct": round(benchmarks["dnb_global_indeks"]["return_pct"], 4) if benchmarks["dnb_global_indeks"]["return_pct"] is not None else None,
         "alpha_vs_sp500": round(performance["alpha_vs_sp500"], 4),
-        "alpha_vs_dnb": round(performance["alpha_vs_dnb"], 4)
+        "alpha_vs_dnb": round(performance["alpha_vs_dnb"], 4) if performance["alpha_vs_dnb"] is not None else None
     }
 
     history.append(completed_month)
     history = sorted(history, key=lambda item: item["month_id"], reverse=True)
 
-    track_record = calculate_track_record(history)
+    track_record = calculate_track_record([
+        {
+            **item,
+            "alpha_vs_dnb": item["alpha_vs_dnb"] if item["alpha_vs_dnb"] is not None else 0
+        }
+        for item in history
+    ])
+
+    month_file_path = os.path.join(MONTHS_DIR, f"{portfolio['month_id']}.json")
+    if os.path.exists(month_file_path):
+        month_file = load_json(month_file_path)
+        month_file["status"] = "completed"
+        save_json(month_file_path, month_file)
 
     save_json(MONTHLY_HISTORY_PATH, history)
     save_json(TRACK_RECORD_PATH, track_record)
 
     print(f"La til {portfolio['label']} i monthly_history.json")
-    print("Oppdaterte track_record.json")
+    print("Oppdaterte track_record.json og satte månedsfil til completed")
 
 
 if __name__ == "__main__":
