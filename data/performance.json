@@ -1,15 +1,15 @@
 {
   "month_id": "2026-05",
-  "updated_at": "2026-07-01T17:52:41+00:00",
-  "portfolio_return_pct": 19.4257,
-  "alpha_vs_sp500": 14.1734,
-  "alpha_vs_dnb": 8.2323,
+  "updated_at": "2026-07-01T19:51:43+00:00",
+  "portfolio_return_pct": 19.4392,
+  "alpha_vs_sp500": 14.3178,
+  "alpha_vs_dnb": 8.2458,
   "best_contributor": {
     "ticker": "DAL",
-    "return_pct": 30.4711
+    "return_pct": 30.1087
   },
   "worst_contributor": {
     "ticker": "JPM",
-    "return_pct": 7.5344
+    "return_pct": 7.3894
   }
 }
