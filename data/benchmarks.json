@@ -1,19 +1,19 @@
 {
   "month_id": "2026-05",
   "buy_date": "2026-05-01",
-  "updated_at": "2026-07-20T15:09:53+00:00",
+  "updated_at": "2026-07-20T16:53:48+00:00",
   "sp500": {
     "name": "S&P 500",
     "proxy_ticker": "SPY",
     "buy_price": 710.16,
-    "current_price": 745.01,
-    "return_pct": 4.9073
+    "current_price": 745.57,
+    "return_pct": 4.9862
   },
   "dnb_global_indeks": {
     "name": "DNB Global Indeks",
     "buy_nav": 794.22,
-    "current_nav": 868.08,
-    "return_pct": 9.2997,
-    "as_of_date": "15. juli 2026"
+    "current_nav": 858.5,
+    "return_pct": 8.0935,
+    "as_of_date": "16. juli 2026"
   }
 }
