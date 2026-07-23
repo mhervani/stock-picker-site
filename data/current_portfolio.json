@@ -3,7 +3,7 @@
   "label": "Runde 1",
   "buy_date": "2026-05-01",
   "status": "active",
-  "updated_at": "2026-07-23T18:12:34+00:00",
+  "updated_at": "2026-07-23T19:54:38+00:00",
   "positions": [
     {
       "ticker": "TSM",
@@ -12,8 +12,8 @@
       "country": "Taiwan",
       "sector": "Information Technology",
       "buy_price": 370.52,
-      "current_price": 414.68,
-      "return_pct": 11.9184,
+      "current_price": 413.34,
+      "return_pct": 11.5567,
       "weight": 0.333,
       "thesis": "TSM har den sterkeste verifiserte kombinasjonen av fersk vekst, guide-up og AI-etterspørsel i universet akkurat nå, og hovedearnings-risikoen før kjøpsdato er allerede passert.",
       "catalysts_30d": [
@@ -30,8 +30,8 @@
       "country": "USA",
       "sector": "Financials",
       "buy_price": 310.31,
-      "current_price": 347.57,
-      "return_pct": 12.0073,
+      "current_price": 348.62,
+      "return_pct": 12.3457,
       "weight": 0.333,
       "thesis": "JPM er den reneste store, likvide eksponeringen mot sterk trading, bedret investment banking og fortsatt robust amerikansk aktivitet, med fersk Q1-bekreftelse.",
       "catalysts_30d": [
@@ -48,8 +48,8 @@
       "country": "USA",
       "sector": "Industrials",
       "buy_price": 71.74,
-      "current_price": 81.54,
-      "return_pct": 13.6604,
+      "current_price": 81.8,
+      "return_pct": 14.0229,
       "weight": 0.333,
       "thesis": "Delta gir taktisk eksponering mot fortsatt sterk premium- og corporate travel etter at selskapet allerede har vist at etterspørselen holdt seg oppe gjennom energisjokket.",
       "catalysts_30d": [
